@@ -1,0 +1,584 @@
+/* Base styles for the body, header, and general layout */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #F8F8F8;
+    color: #282828;
+    line-height: 1.6;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+header {
+    background: #282828;
+    padding: 1.5rem 1rem;
+    font-family: 'Anton', sans-serif;
+    animation: slideDown 1s ease;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+header .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    header .header-content {
+        flex-direction: row;
+        gap: 30px;
+    }
+}
+
+header img {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #D4D4D4;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+    letter-spacing: 0.5px;
+    color: #FFFFFF;
+    font-weight: normal;
+}
+
+@media (min-width: 768px) {
+    header h1 {
+        font-size: 3rem;
+    }
+}
+
+header p {
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    font-weight: 300;
+    text-align: center;
+    color: #B3B3B3;
+}
+
+/* Homepage Sections - Layout for the three main categories */
+.homepage-sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+    max-width: 1000px;
+    margin: 3rem auto;
+    flex-grow: 1;
+    animation: fadeIn 1s ease;
+}
+
+@media (min-width: 768px) {
+    .homepage-sections {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        padding: 3rem 2rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .homepage-sections {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Styling for individual category cards on the homepage */
+.section-card {
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #EDEDED;
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.section-card h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.6rem;
+    color: #2B2B2B;
+    margin-bottom: 0.8rem;
+    font-weight: normal;
+}
+
+@media (min-width: 768px) {
+    .section-card h2 {
+        font-size: 2rem;
+    }
+}
+
+.section-card p {
+    font-size: 0.9rem;
+    color: #666666;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.section-card .btn-explore {
+    background: #2B2B2B;
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background 0.2s ease-out, transform 0.1s ease-out;
+    letter-spacing: 0.5px;
+}
+
+.section-card .btn-explore:hover {
+    background: #4A4A4A;
+    transform: translateY(-2px);
+}
+
+/* Product Listing Sections - for Affordable, Premium, Combo pages */
+.product-category-section {
+    padding: 2rem 1.5rem;
+    flex-grow: 1;
+}
+
+.product-category-section .section-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 2.2rem;
+    color: #2B2B2B;
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 1.5rem;
+    font-weight: normal;
+}
+
+.product-category-section .back-button {
+    background: #E0E0E0;
+    color: #2B2B2B;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    text-decoration: none;
+    transition: background 0.2s ease-out, transform 0.1s ease-out;
+    font-weight: 500;
+}
+
+.product-category-section .back-button:hover {
+    background: #D4D4D4;
+    transform: translateY(-2px);
+}
+
+/* Grid for products within category sections */
+.products-grid {
+    /* FIX: Adjusted minmax to ensure single column on small screens is less restrictive. */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 500px) { /* FIX: New, aggressive media query for small phones */
+    .products-grid {
+        /* FIX: Force a single column layout to ensure products are visible. */
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2.5rem;
+    }
+}
+
+/* Styling for individual product cards */
+.product {
+    background: #FFFFFF;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #EDEDED;
+    /* FIX: Ensures product card fills grid cell on small screens */
+    width: 100%; 
+    max-width: 100%;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.product-slider {
+    position: relative;
+    width: 100%;
+    padding-top: 90%;
+    overflow: hidden;
+    background-color: #EEEEEE;
+}
+
+.product-slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.product-slider img.active {
+    opacity: 1;
+}
+
+.slider-controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 10;
+}
+
+.slider-controls button {
+    background: rgba(43, 43, 43, 0.6);
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.slider-controls button:hover {
+    opacity: 1;
+    background: rgba(43, 43, 43, 0.8);
+}
+
+.prev-btn, .next-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.product-info {
+    padding: 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.2rem;
+    color: #2B2B2B;
+    margin-bottom: 0.5rem;
+    font-weight: normal;
+}
+
+@media (min-width: 768px) {
+    .product h3 {
+        font-size: 1.4rem;
+    }
+}
+
+.product p {
+    font-size: 0.85rem;
+    color: #666666;
+    margin: 0.4rem 0 1rem;
+}
+
+.product .price-info {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    border-top: 1px dashed #E0E0E0;
+    text-align: center;
+}
+
+.product .price-info strong {
+    color: #2B2B2B;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.product .price-info span {
+    text-decoration: line-through;
+    color: #999999;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+}
+
+.btn-add {
+    background: #2B2B2B;
+    color: #FFFFFF;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease-out, transform 0.1s ease-out;
+    width: 100%;
+    letter-spacing: 0.5px;
+}
+
+.btn-add:hover {
+    background: #4A4A4A;
+    transform: translateY(-2px);
+}
+
+/* Cart Section Styling */
+.cart-section {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    margin-top: auto;
+    background-color: #282828;
+    border-top: 1px solid #444444;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#cartPreview {
+    color: #D4D4D4;
+}
+
+#cartPreview h2 {
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    font-weight: normal;
+}
+
+#cartItems {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 1.5rem;
+    max-width: 90%;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+#cartItems li {
+    padding: 8px 0;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #444444;
+}
+
+#cartItems li:last-child {
+    border-bottom: none;
+}
+
+#cartItems li .remove-item {
+    background: none;
+    border: none;
+    color: #FF6347;
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: color 0.2s ease;
+}
+
+#cartItems li .remove-item:hover {
+    color: #E63D2A;
+}
+
+#referralInput {
+    margin-top: 1.5rem;
+    padding: 10px;
+    width: calc(100% - 40px);
+    max-width: 350px;
+    border-radius: 5px;
+    border: 1px solid #666666;
+    font-size: 0.9rem;
+    background-color: #4A4A4A;
+    color: #FFFFFF;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#referralInput::placeholder {
+    color: #B3B3B3;
+}
+
+.cart-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    background: #25D366;
+    color: #282828;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s ease-out, transform 0.1s ease-out;
+    font-weight: 600;
+}
+
+.cart-btn:hover {
+    background: #1DA851;
+    transform: translateY(-2px);
+}
+
+#clearCartBtn {
+    display: block;
+    margin: 1.5rem auto 0.5rem;
+    background: #FF6347;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.2s ease-out, transform 0.1s ease-out;
+}
+
+#clearCartBtn:hover {
+    background: #E63D2A;
+    transform: translateY(-2px);
+}
+
+footer {
+    background: #1A1A1A;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #B3B3B3;
+    margin-top: auto;
+}
+
+/* Styles for the notification popup */
+.notification-popup {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(43, 43, 43, 0.95);
+    color: #fff;
+    padding: 15px 25px;
+    border-radius: 6px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+    font-size: 1rem;
+    text-align: center;
+    min-width: 250px;
+    max-width: 90%;
+    font-weight: 500;
+}
+
+.notification-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Media query for smaller screens to adjust position if needed */
+@media (max-width: 600px) {
+    .notification-popup {
+        width: calc(100% - 60px);
+        bottom: 20px;
+    }
+}
+
+/* Styling for the new About Section */
+.about-section {
+    background-color: #F8F8F8;
+    color: #282828;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    max-width: 1000px;
+    margin: 3rem auto 0;
+    border-top: 1px solid #E0E0E0;
+}
+
+.about-section h2 {
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+    color: #2B2B2B;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+}
+
+.about-section p {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.about-section a {
+    color: #2B2B2B;
+    text-decoration: underline;
+    transition: color 0.2s ease-out;
+}
+
+.about-section a:hover {
+    color: #666666;
+}
+
+/* --- Mobile Layout Correction --- */
+@media (max-width: 767px) {
+    /* Ensures the main content area (where products live) takes full width on mobile */
+    #app-container {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    /* FIX: Reduce padding on the overall product section for maximum viewing area */
+    .product-category-section {
+        padding: 1rem 0.5rem; 
+    }
+}
